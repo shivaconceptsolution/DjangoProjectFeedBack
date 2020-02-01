@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>View Registered Users</h1>
+Welcome {{res2}}
+<a href="logout">Logout</a>
+<br><br>
+<table border="1">
+	<tr><th>ID</th><th>Email</th><th>Password</th><th>Mobile</th><th>Fullname</th></tr>
+{%  for data in res1    %}
+
+<tr><td>{{data.id}}</td><td>{{data.emailid}}</td> <td>{{data.password}}</td><td>{{data.mobile}}</td><td>{{data.fullname}}</td><td><a href="editreg?q={{data.id}}">EDIT</a>||<a href="deletereg?q={{data.id}}">DELETE</a></td></tr>
+
+
+</table>
+<h1>Submit FeedBack Here</h1>
+<hr><hr>
+<div style="float:left;">
+<form method="post" action="feedlogic">
+	{% csrf_token %}
+<input type="email" name="txtemail" placeholder="enter email" value="{{data.emailid}}" required=""  /><br><br>
+<input type="text" name="txtfeedto" placeholder="enter Feed TO" required="" /><br><br>
+<input type="text" name="txtfeeddesc" placeholder="Feed Description" required="" /><br><br>
+<input type="text" name="txtfeedrate" placeholder="Feedback Rate" required="" /><br>
+<br>
+
+<br>
+<br>
+
+	<input type="submit" name="btnsubmit" value="Submit">
+</form>
+{% endfor  %}
+</div>
+<div style="float:right;">
+<table border="1">
+	<tr><th>ID</th><th>FeedBy</th><th>FeedTo</th><th>FeedDesc</th><th>FeedBackRate</th></tr>
+{%  for data in res3   %}
+
+<tr><td>{{data.id}}</td><td>{{data.feedby}}</td> <td>{{data.feedto}}</td><td>{{data.feeddesc}}</td><td>{{data.feedbackrate}}</td><td><a href="editreg?q={{data.id}}">EDIT</a>||<a href="deletereg?q={{data.id}}">DELETE</a></td></tr>
+
+
+</table>
+{% endfor  %}
+</div>
+<div style="clear:both;"></div>
+<a href="reg">Back</a>
+</body>
+</html>
