@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from . models import Register,Feedback
+from . models import Register,Feedback,Faculty
 def login(request):
 	return render(request,"addapp/login.html")
 def loginlogic(request):
@@ -27,7 +27,8 @@ def viewreg(request):
 	  #res = Register.objects.all()
 	  res = Register.objects.filter(emailid=sess)
 	  r = Feedback.objects.filter(feedby=sess)
-	  return render(request,"addapp/viewreg.html",{'res1':res,'res2':sess,'res3':r})
+	  f = Faculty.objects.all()
+	  return render(request,"addapp/viewreg.html",{'res1':res,'res2':sess,'res3':r,'res4':f})
 	else:
 	  return redirect('login')
 

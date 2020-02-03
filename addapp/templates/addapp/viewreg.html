@@ -22,9 +22,23 @@ Welcome {{res2}}
 <form method="post" action="feedlogic">
 	{% csrf_token %}
 <input type="email" name="txtemail" placeholder="enter email" value="{{data.emailid}}" required=""  /><br><br>
-<input type="text" name="txtfeedto" placeholder="enter Feed TO" required="" /><br><br>
+<select name="txtfeedto" >
+<option value="">Select Faculty Name</option>	
+{%  for data2 in res4    %}
+<option value="{{data2.emailid}}">{{data2.fullname}}</option>
+{% endfor  %}
+
+</select><br><br>
 <input type="text" name="txtfeeddesc" placeholder="Feed Description" required="" /><br><br>
-<input type="text" name="txtfeedrate" placeholder="Feedback Rate" required="" /><br>
+<select name="txtfeedrate" >
+<option value="">Select FeedBack Rate</option>	
+<option value="5">Best</option>
+<option value="4">Good</option>
+<option value="3">Medium</option>
+<option value="2">Average</option>
+<option value="1">poor</option>
+</select>
+<br>
 <br>
 
 <br>
